@@ -1,4 +1,6 @@
-Max Profit : 2
-Recursion : 2
-Max Profit : 7
-Recursion : 7
+Recursion : 4
+Memoization : 4
+Recursion : 4
+Memoization : 4
+Recursion : 1
+Memoization : 1
