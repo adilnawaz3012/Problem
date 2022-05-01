@@ -1,6 +1,12 @@
-Recursion : 4
-Memoization : 4
-Recursion : 4
-Memoization : 4
-Recursion : 1
-Memoization : 1
+Tabulation : 4
+LIS : 4
+Print LIS : 2 5 7 101 
+4
+Tabulation : 4
+LIS : 4
+Print LIS : 0 1 2 3 
+4
+Tabulation : 1
+LIS : 1
+Print LIS : 7 
+1
