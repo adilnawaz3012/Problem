@@ -1,0 +1,12 @@
+-> what is databases?
+A database is a collection of data stored in a format taht can easily be accessed.
+-> To manage it
+We use software DBMS ( Database Management System )
+-> Two types of Databases
+Relational and Non-Relational (No-SQL)
+-> In Relational Databases
+We store data in tables using relationships, each tables stores data about a specifc type of object ( order , transaction )
+-> SQL or Structured Query Language is we use to quesry or modify our data.
+Eg: SELECT * FROM products WHERE category = 'food' ORDER BY price
+
+RDBMS -> MySQL ( Open Source ) , SQL Server ( Microsoft ) and Oracle

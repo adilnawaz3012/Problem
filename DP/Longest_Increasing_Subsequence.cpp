@@ -1,6 +1,12 @@
 // Longest Increasing Subsequence
 // https://leetcode.com/problems/longest-increasing-subsequence/
 // NOTE: in all subsequence pattern ,we can take or not take
+/*
+Start with prevInx  = -1, as we didn;t have anything before to consider
+If prevIdx == -1, means we can consider the current element as no prev element is chosen
+If nums[prevIdx] < nums[idx] then add 1 and replace prevIdx with current idx [ prevIdx = idx ]
+else Move to nextIdx and keep the prevIdx same.
+*/
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -31,6 +37,10 @@ int Memoization(vector<int> & nums, int idx, int prevIdx, vector<vector<int>> ds
     return ds[idx][prevIdx + 1] = max(take, not_take);
 }
 
+int Tabulation(vector<int> & nums) {
+    
+}
+
 
 int main(){
     #ifndef ONLINE_JUDGE
@@ -51,6 +61,7 @@ int main(){
         // N * N+1 as we are starting prevIdx from -1
         vector<vector<int>> ds(n, vector<int>(n+1, -1));
         cout << "Memoization : " << Memoization(nums, 0, -1, ds) << endl; 
+        cout << "Tabulation : " << Tabulation(nums) << endl;
     }
     return 0;
 }

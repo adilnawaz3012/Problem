@@ -1,7 +1,7 @@
 3
-abcd
+6
+a b ba bca bda bdca
+5
+xbc pcxbcf xb cxbc pcxbc
 2
-deeedbbcccbdaa
-3
-pbbcggttciiippooaais
-2
+abcd dbqca
