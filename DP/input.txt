@@ -1,7 +1,5 @@
-3
-6
-a b ba bca bda bdca
-5
-xbc pcxbcf xb cxbc pcxbc
 2
-abcd dbqca
+8
+1 11 2 10 4 5 2 1
+5
+1 2 5 3 2
