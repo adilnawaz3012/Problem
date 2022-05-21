@@ -1,5 +1,18 @@
 /*
 Depth-First Dearch (DFS) | Traversal Technique in Graph
+
+TC: 
+
+1
+7 6
+1 2
+2 4
+2 7
+4 6
+7 6
+3 5
+
+
 */
 
 #include<bits/stdc++.h>
