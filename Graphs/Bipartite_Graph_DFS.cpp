@@ -1,27 +1,7 @@
 /*
-Bipartite Graph (BFS) | Graph Coloring
+Bipartite Graph (DFS) | Graph Coloring
 
 Problem Link: https://practice.geeksforgeeks.org/problems/bipartite-graph/1/#
-
-Self explanatory.
-
-Keep coloring next element opp of previous.
-
-TC::
-
-2
-4 4
-0 2
-0 3
-1 3
-2 3
-4 4
-0 1
-0 3
-1 2
-1 3
-
-
 
 */
 
@@ -29,19 +9,13 @@ TC::
 using namespace std;
 
 bool isBipartite(int src, vector<int> adj[], vector<int> & color) {
-    queue<int> q;
-    q.push(src);
-    color[src] = 1;
-    while(!q.empty()){
-        int node  = q.front();
-        q.pop();
-        for(auto it: adj[node]) {
-            if(color[it] == -1) {
-                color[it] = 1 - color[node];
-                q.push(it);
-            } else if(color[it] == color[node]) {
-                return false;
-            }
+    if(color[src] == -1) color[src] = 1; // this check is required when inner dfs get called, else all the inner node will be marked as 1
+    for(auto it: adj[src]) {
+        if(color[it] == -1) {
+            color[it] = 1 - color[src];
+            if(!isBipartite(it, adj, color)) return false;
+        } else if(color[it] == color[src]) {
+            return false;
         }
     }
     return true;
@@ -50,7 +24,7 @@ bool isBipartite(int src, vector<int> adj[], vector<int> & color) {
 bool isBipartite(int n, int m, vector<int> adj[]) {
     vector<int> color(n, -1);
     for(int i=0;i<n;i++) {
-        if(color[i] != -1) {
+        if(color[i] == -1) {
             if(!isBipartite(i, adj, color)) {
                 return false;
             }
