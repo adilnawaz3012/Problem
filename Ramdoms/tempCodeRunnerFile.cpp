@@ -1,1 +1,4 @@
-    // int not_take = findSubset(idx + 1, s, res, n); 
+count++;
+            m -= zeros;
+            n -= ones;
+        }

@@ -1,12 +1,9 @@
 /*
-Topological Sort (BFS) | Kahn's Algorithm
+Cycle Detection in Directed Graph using BFS(Kahn's Algorithm)
 
-TC: N + E
-SC: N + N
+TC: 
 
-TC:
-
-1
+2
 6 6
 2 3
 3 1
@@ -14,14 +11,21 @@ TC:
 4 1
 5 0
 5 2
+4 4
+0 1
+1 2
+2 3
+3 1
 
-Self Explanatory
+Note: Just check it topo is generatated or not
+if generated meand no cycle else cycle
+
 */
 
 #include<bits/stdc++.h>
 using namespace std;
 
-void topoSort(int n, vector<int> nums[]) {
+int topoSort(int n, vector<int> nums[]) {
     queue<int> q;
     vector<int> indegree(n,0);
     for(int i=0;i<n;i++) {
@@ -34,11 +38,13 @@ void topoSort(int n, vector<int> nums[]) {
             q.push(i);
         }
     }
-    vector<int> topo;
+    // vector<int> topo;
+    int count = 0;
     while(!q.empty()) {
         int node = q.front();
         q.pop();
-        topo.push_back(node);
+        // topo.push_back(node);
+        count++;
         for(auto it: nums[node]) {
             indegree[it]--;
             if(indegree[it] == 0) {
@@ -46,10 +52,11 @@ void topoSort(int n, vector<int> nums[]) {
             }
         }
     }
-    for(auto t: topo) {
-        cout << t << " ";
-    }
-    cout << endl;
+    /*
+    if count == n, it means it generated the topo sort with all element, so cycle will be false
+    */
+    if(count == n) return false;
+    return true;
 }
 
 int main(){
@@ -68,8 +75,12 @@ int main(){
             cin >> x >> y;
             nums[x].push_back(y);
         }
-        topoSort(n, nums);
-        cout << endl;
+        int res = topoSort(n, nums);
+        if(res == 0) {
+            cout << "Doesn't contain cycle\n";
+        } else {
+            cout << "Contain cycle\n";
+        }
     }
     return 0;
 }
