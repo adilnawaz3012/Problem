@@ -1,0 +1,44 @@
+Overview:
+    1. what is Docker? What is Container? And what problems it solves?
+    2. Diff between Docker and Virtual machines.
+    3. Docker Installation
+    4. Main Commands
+    5. Debugging Container
+    6. Demo Project:
+        - Devoloping with Containers
+        - Docker Compose - Running Multiple Containers
+        - DockerFile - Building own Docker Image
+        - Push that image on private repo : Private Docker Repository ( AWS )
+        - Deploying the containerized App
+    7. How to persist data in docker ( Volumes - Persisting Data )
+        - Learing different volume types
+        - Configure Persistent for Demo Projects     
+
+- What is a container and what problems it solves?
+- Container Repository
+- DEVELOP application
+- DEPLOY application
+
+* What a contianer is?
+- A way to package application with all the necessary dependencies and configurations.
+- The package is portable ( portable artifact ), easily shared and moved around.
+- Makes development and deployement more efficient.
+
+* Where do container live?
+- Container Repository ( Special Type of storage for containers )
+- Can be stored in Private Repository
+- Also have a public Repository for containers ( browse and find any application container) [ Docker HUB ]
+
+* How container improved Development Process.
+- How we develop application before containers?
+    - Downloading all the required dependencies/ binaries in local environment.
+    - Installation process different for each OS environment
+    - Multiple Steps: which can go wrong.
+- Container solving it:
+    - We do not install any of servies directly on OS because container has its own isolated OS layer with linux based image
+        - Own isolated environment
+        - packaged with all needed configuration
+        - one command to install the app and start at the same time ( same command for all OS )
+
+* How container can improve the deployment process.
+- 

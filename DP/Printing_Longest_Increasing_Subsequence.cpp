@@ -22,22 +22,39 @@ int Tabulation(vector<int> & nums) {
     return dp[0][-1 + 1];
 }
 
-int LIS(vector<int> & nums) {
+int SpaceOP(vector<int> & nums) {
     int n = nums.size();
-    int maxi = 1;
-    vector<int> dp(n,1);
-    for(int i=0;i<n;i++) {
-        for(int prev=0; prev<i;prev++) {
-            if(nums[prev] < nums[i]) {
-                dp[i] = max(dp[i], 1 + dp[prev]);
+    vector<int> next(n+1, 0), curr(n+1, 0);
+    for(int idx = n-1; idx>=0;idx--) {
+        for(int prev = idx - 1; prev >= -1; prev--) {
+            int take = INT_MIN;
+            if(prev == -1 || nums[idx] > nums[prev]) {
+                take =  1 + next[idx+1];
             }
+            int not_take = next[prev + 1];
         }
-        maxi = max(maxi, dp[i]);
+        curr[prev+ 1] = max(take, not_take);
+    }
+    return curr[0];
+}
+
+// below logic required if we want to trace back LIS
+int lis_dp(vector<int> & nums) {
+    int n = nums.size();
+    vector<int> dp(n, 1);
+    int maxi = 1;
+    for(int i=0;i<n;i++) {
+        for(int prev = i -1; prev>=0; prev--) {
+            if(nums[i] > nums[prev] && dp[i] < dp[prev] + 1) {
+                dp[i] = dp[prev] + 1;
+            }
+            maxi = max(maxi, dp[i]);
+        }
     }
     return maxi;
 }
 
-int LIS_Print(vector<int> & nums) {
+int LIS_Print1(vector<int> & nums) {
     int n = nums.size();
     int maxi = 1;
     int lastIdx = 0;
@@ -69,6 +86,45 @@ int LIS_Print(vector<int> & nums) {
     return maxi;
 }
 
+int LIS_Print(vector<int> & nums) {
+    int n = nums.size();
+    vector<int> hash(n); // backrace array to store the LIS and make sure every one is assigned the index itself
+    // above hash vector will say, who is the prev element before it.
+    vector<int> dp(n, 1);
+    int lastIdx = 0;
+    int maxi = 1;
+    for(int i=0;i<n;i++) {
+        hash[i] = i;
+        for(int prev = i -1; prev>=0; prev--) {
+            if(nums[i] > nums[prev] && dp[i] < dp[prev] + 1) {
+                dp[i] = dp[prev] + 1;
+                hash[i] = prev;
+            }
+            // maxi = max(maxi, dp[i]);
+            if(dp[i] > maxi) {
+                maxi = max(maxi, dp[i]);
+                lastIdx = i;
+            }
+        }
+    }
+    // now since we keep on store teh index where we got the lasrgest LIS, so take that element as lastIdx
+    // below condition makes sure that we should not keep looping infinitely
+    vector<int> lis(maxi);
+    lis[0] = nums[lastIdx];
+    int idx = 1;
+    while(hash[lastIdx] != lastIdx) {
+        lastIdx = hash[lastIdx];
+        lis[idx++] = nums[lastIdx];
+    }
+    reverse(lis.begin(), lis.end());
+    for(auto & l: lis) {
+        cout << l << " ";
+    }
+    cout << endl;x  
+    return maxi;
+
+}
+
 int main() {
     #ifndef ONLINEJUDGE
     freopen("input.txt", "r", stdin);
@@ -84,6 +140,8 @@ int main() {
             cin >> nums[i];
         }
         cout << "Tabulation : " << Tabulation(nums) << endl;
+        cout < "Space OP: " << SpaceOP(nums) << endl;
+        cout << "lis_dp : " << lis_dp(nums) << endl;
         cout << "LIS : " << LIS(nums) << endl;
         cout << "Print LIS : " << LIS_Print(nums) << endl;
     }

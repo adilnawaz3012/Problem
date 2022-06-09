@@ -4,6 +4,8 @@
 // loop through both LIS, from add them and subtract 1 as mid element will be comman for both front and end LIS
 
 /*
+Bitionic : Increasing and Decreasing | Just Increase | Just Decrease
+
 TC:
 
 2

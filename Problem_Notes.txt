@@ -1,0 +1,8 @@
+1. https://leetcode.com/problems/range-sum-query-2d-immutable/
+    - https://leetcode.com/problems/range-sum-query-2d-immutable/discuss/75350/Clean-C%2B%2B-Solution-and-Explaination-O(mn)-space-with-O(1)-time
+    - Generate sum from (0,0) to (r,c) for every index in matrix, take row + 1 and col + 1 matrix to  handle edge cases
+        - Upper top sum (r1, c2 ) + left sum (r2, c1) - upper corner sum (r1 -  1, c1 - 1) + matrix[i-1][j-1]
+    - Return the sum
+        - Total Sum ( r2, c2 ) - remove upper space ( r1, c2) - remove left space (r2, c1) + add top corner sum which got removed twice ( r1,c1)
+
+2. 
